@@ -1,0 +1,24 @@
+#ItemJoin by Sleepybear - v${project.version}
+
+#clearOnJoin: <boolean>
+# if set to true, will clear the players inventory on join
+clearOnJoin: false
+
+#bypass: Array of <string>
+# if playername is included here, their inventories will never be cleared, even if the above option is enabled
+bypass:
+  - Sleepybear
+
+#items: array of maps
+# example:
+# items:
+#  - itemId: 276
+#    meta: 0
+#    count: 1
+items:
+  - itemId: 276
+    meta: 0
+    count: 1
+  - itemId: 345
+    meta: 0
+    count: 1
