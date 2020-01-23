@@ -24,7 +24,7 @@ public class ItemJoinPlugin extends PluginBase implements Listener {
         saveDefaultConfig();
         Config config = getConfig();
 
-        clearInvOnLoad = config.getBoolean("clearOnLoad", false);
+        clearInvOnLoad = config.getBoolean("clearOnJoin", false);
         List<Map> configItems = config.getMapList("items");
         List<Item> list = new ArrayList<>();
         bypassPlayers = config.getList("bypass");
