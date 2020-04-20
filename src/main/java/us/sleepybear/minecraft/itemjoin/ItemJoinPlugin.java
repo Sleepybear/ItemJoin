@@ -6,6 +6,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 
@@ -40,6 +41,12 @@ public class ItemJoinPlugin extends PluginBase implements Listener {
         int currentSlot = 0;
         for (Map i : configItems) {
             Item item = Item.get((int) i.get("itemId"), (int) i.get("meta"), (int) i.get("count"));
+            if (i.containsKey("ench")) {
+                List<Map> enchants = (List<Map>) i.get("ench");
+                for (Map e : enchants) {
+                    item.addEnchantment(Enchantment.get((int) e.get("id")).setLevel((int) e.get("level")));
+                }
+            }
             if (i.containsKey("slot") && (int) i.get("slot") >= 0 && (int) i.get("slot") <= 35) {
                 if (items.putIfAbsent((int) i.get("slot"), item) != null) {
                     getLogger().warning("Not adding item " + item.getName() + " because another item already uses that slot.");
