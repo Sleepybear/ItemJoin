@@ -4,8 +4,15 @@
 # if set to true, will clear the players inventory on join
 clearOnJoin: false
 
+#firstJoinOnly: <boolean>
+#  if set to ture, will try to give the player the listed items only
+#  on the first time they join. This also means Inventories will not be
+#  cleared for returning players.
+firstJoinOnly: false
+
 #bypass: Array of <string>
-# if playername is included here, their inventories will never be cleared, even if the above option is enabled
+# if playername is included here, their inventories will never be cleared,
+#  even if the above option is enabled
 bypass:
   - Sleepybear
 
@@ -15,6 +22,7 @@ bypass:
 #  - itemId: 276
 #    meta: 0
 #    count: 1
+#    slot: 0 # Can be between 0 and 35, 0-9 is the hotbar
 items:
   - itemId: 276
     meta: 0
@@ -22,3 +30,4 @@ items:
   - itemId: 345
     meta: 0
     count: 1
+    slot: 9
