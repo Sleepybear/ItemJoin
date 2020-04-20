@@ -40,7 +40,7 @@ public class ItemJoinPlugin extends PluginBase implements Listener {
         int currentSlot = 0;
         for (Map i : configItems) {
             Item item = Item.get((int) i.get("itemId"), (int) i.get("meta"), (int) i.get("count"));
-            if (i.containsKey("slot")) {
+            if (i.containsKey("slot") && (int) i.get("slot") >= 0 && (int) i.get("slot") <= 35) {
                 if (items.putIfAbsent((int) i.get("slot"), item) != null) {
                     getLogger().warning("Not adding item " + item.getName() + " because another item already uses that slot.");
                 }
@@ -71,7 +71,7 @@ public class ItemJoinPlugin extends PluginBase implements Listener {
             return;
         }
 
-        if (clearInvOnLoad) {
+        if (!firstJoinOnly && clearInvOnLoad) { // No need to clear on first join anyway
             if (!bypassPlayers.contains(player.getName())) {
                 getLogger().debug("Clearing inventory of " + player.getName());
                 inv.clearAll();

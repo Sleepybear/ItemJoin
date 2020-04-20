@@ -22,7 +22,7 @@ bypass:
 #  - itemId: 276
 #    meta: 0
 #    count: 1
-#    slot: 0 # Can be between 0 and 35, 0-9 is the hotbar
+#    slot: 0 # Can be between 0 and 35, 0-8 is the hotbar
 items:
   - itemId: 276
     meta: 0
