@@ -92,7 +92,7 @@ public class ItemJoinPlugin extends PluginBase implements Listener {
         }
         if (items.size() > 0) {
             for (Map.Entry<Integer, Item> entry : items.entrySet()) {
-                if (entry.getKey().intValue() >= 36) {
+                if (entry.getKey().intValue() >= 36) { // Should probably do more sanity checks of armor types
                     if (!entry.getValue().isArmor()) {
                         getLogger().warning("Unable to equip non-armor item in armor slot: " + entry.getValue().getName());
                         continue;

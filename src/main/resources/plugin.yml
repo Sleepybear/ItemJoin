@@ -2,4 +2,4 @@ name: ItemJoin
 main: us.sleepybear.minecraft.itemjoin.ItemJoinPlugin
 version: ${project.version}
 author: Sleepybear
-api-version: ${nukkit.api.version}
+api: [${nukkit.api.version}]
