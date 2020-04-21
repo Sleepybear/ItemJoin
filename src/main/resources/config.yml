@@ -22,7 +22,7 @@ bypass:
 #  - itemId: 276
 #    meta: 0
 #    count: 1
-#    slot: 0 # Can be between 0 and 35, 0-8 is the hotbar
+#    slot: 0 # Can be between 0 and 39, 0-8 is the hotbar, 36-39 are the armor slots
 #    ench: # LIST of enchantment ID & Level, both must be specified, see see https://github.com/NukkitX/Nukkit/blob/358a5aa18ee4620c05535d304bf1394125a72bf2/src/main/java/cn/nukkit/item/enchantment/Enchantment.java#L36
 #     - id: 13 #FIRE ASPECT
 #       level: 2

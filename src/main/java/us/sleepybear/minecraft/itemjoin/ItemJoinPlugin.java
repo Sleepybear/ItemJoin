@@ -47,11 +47,17 @@ public class ItemJoinPlugin extends PluginBase implements Listener {
                     item.addEnchantment(Enchantment.get((int) e.get("id")).setLevel((int) e.get("level")));
                 }
             }
-            if (i.containsKey("slot") && (int) i.get("slot") >= 0 && (int) i.get("slot") <= 35) {
-                if (items.putIfAbsent((int) i.get("slot"), item) != null) {
+            if (i.containsKey("slot")) {
+                int slot = (int) i.get("slot");
+                if (slot < 0 || slot > 39) {
+                    getLogger().warning("Invalid slot (" + slot + ") for item: " + item.getName());
+                    slot = currentSlot;
+                }
+
+                if (items.putIfAbsent(slot, item) != null) {
                     getLogger().warning("Not adding item " + item.getName() + " because another item already uses that slot.");
                 }
-                if ((int) i.get("slot") == currentSlot) {
+                if (slot == currentSlot) {
                     currentSlot++;
                 }
                 continue;
@@ -59,7 +65,7 @@ public class ItemJoinPlugin extends PluginBase implements Listener {
             while (items.containsKey(currentSlot)) {
                 currentSlot++;
             }
-            if (currentSlot >= 36) {
+            if (currentSlot >= 36) { // Leaving this as 36 so auto assigned slots don't roll over onto armor
                 getLogger().warning("Exceeded maximum slots");
                 break;
             }
@@ -86,6 +92,12 @@ public class ItemJoinPlugin extends PluginBase implements Listener {
         }
         if (items.size() > 0) {
             for (Map.Entry<Integer, Item> entry : items.entrySet()) {
+                if (entry.getKey().intValue() >= 36) {
+                    if (!entry.getValue().isArmor()) {
+                        getLogger().warning("Unable to equip non-armor item in armor slot: " + entry.getValue().getName());
+                        continue;
+                    }
+                }
                 inv.setItem(entry.getKey(), entry.getValue(), false);
             }
             inv.sendContents(player);
